@@ -1,0 +1,145 @@
+﻿.content-block {
+    margin-top: 0.5rem;
+}
+
+/*返回图标宽度*/
+#DetailBackMainPage {
+    width: 20%;
+}
+
+#DetailPage-Tabs {
+    height: 2rem;
+}
+
+    #DetailPage-Tabs a {
+        height: 2rem;
+    }
+
+/* 滑动高度*/
+#swiper-container-ProductDetailPage {
+    position: relative;
+    height: 17.5rem;
+    width: 100%;
+    padding: 0rem;
+    margin: 0rem;
+}
+
+#swiper-wrapper-ProductDetailPage {
+    position: relative;
+    height: 17.5rem;
+    width: 100%;
+    bottom: 0rem;
+}
+
+#swiper-pagination-ProductDetailPage {
+    position: relative;
+    bottom: 1.5rem;
+}
+
+/* 价格区间*/
+#PriceRangeStart1 {
+    font-size: 1.25rem;
+    color: #F6383A;
+}
+
+#PriceRangeStart2 {
+    color: #F6383A;
+}
+
+#PriceRangeEnd1 {
+    font-size: 1.25rem;
+    color: #F6383A;
+}
+
+#PriceRangeEnd2 {
+    color: #F6383A;
+}
+
+/* 起批条件*/
+#ConditionCount {
+    font-size: 1.25rem;
+    color: #F6383A;
+}
+
+/*规格选择图标 */
+.Img100100 {
+    height: 5rem;
+    width: 5rem;
+}
+
+/*商品属性列表 */
+
+.content-block-title {
+    margin: 0.5rem 2.5rem;
+}
+
+.list-block {
+    margin: 0rem;
+}
+
+/*评论 */
+.color-green {
+    color: #4CD966;
+}
+
+.TalkNickName {
+    font-size: 1rem;
+    text-align: left;
+}
+
+.Talks {
+    font-size: 0.7rem;
+    text-align: left;
+    color: #282626;
+}
+
+#MoreTalks {
+    text-align: right;
+}
+
+/* 页脚*/
+#ProductDetailPage-footer {
+    width: 100%;
+    height: 2rem;
+}
+
+#BuyProduct {
+    background-color: #F6383A;
+    color: #fff;
+}
+
+#AddProductsToCart {
+    background-color: #4CD966;
+    color: #fff;
+}
+
+/*相似推荐表*/
+#SimilarRecommend {
+    background-color: transparent;
+    bottom: 3rem;
+}
+
+    #SimilarRecommend > tbody > tr > td {
+        border: 0.68rem solid transparent;
+    }
+
+.RecommendPrice {
+    color: #F6383A;
+}
+/*图片详情展示*/
+#DetailImgsShow {
+    width: 100%;
+}
+
+.DetailImgs {
+    width: 100%;
+}
+
+.redcolor {
+    color: #F6383A;
+}
+/*导航栏*/
+#AddressPage-footer {
+    position: fixed;
+    height: 2rem;
+}

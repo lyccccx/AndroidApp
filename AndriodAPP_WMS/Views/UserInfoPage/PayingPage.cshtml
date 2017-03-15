@@ -1,0 +1,207 @@
+﻿@model WMS.Entities.UserInfoPage.PayingPageEntity
+@using WMS.Entities.Base
+@using WMS.Entities.UserInfoPage
+
+<div class='page-group'>
+    @*待支付页面*@
+    <div class='page' id='PayingPage'>
+        <div class='content'>
+            @foreach (PayingSingleEntity mainobj in Model.PayingSingleEntityList)
+            {
+                <div class="Bord1pxB" id="@mainobj.OrderNo">
+                    <!--主信息-->
+                    <table class="PW100 MarginTop1Rem">
+                        <tr>
+                            <td class="ALLCheckBox-CartPage">
+                                <center>
+                                    <div class="CheckBox">
+                                        <input type="hidden" class="OrderNo" value="@mainobj.OrderNo" />
+                                    </div>
+                                </center>
+                            </td>
+                            <td class="ImgTd-CartPage">
+                                <img class="Radius1Rem" src="@mainobj.LittleImgPath">
+                            </td>
+                            <td class="TextTd-65 ">
+                                @mainobj.DetailDescription
+                            </td>
+                        </tr>
+                        <!--按钮列-->
+                        <tr>
+                            <td></td>
+                            <td colspan="2">
+                                <p class="buttons-row">
+                                    <a class="button">
+                                        <span>支付￥@mainobj.TotalFee</span>
+                                    </a>
+                                    <a class="button DeleteOrder">
+                                        移除
+                                        <input type="hidden" class="OrderNo" value="@mainobj.OrderNo">
+                                        <input type="hidden" class="ShowDescreption" value="@mainobj.DetailDescription">
+                                    </a>
+                                    <a class="button ShowHideSwich">
+                                        <span class="TextSwich">详情</span>
+                                        <span class="BadgeSpace" id="@mainobj.OrderBadgeID"></span>
+                                        <input type="hidden" class="HideTabsID" value="@mainobj.HideTabsID" />
+                                    </a>
+                                </p>
+                            </td>
+                        </tr>
+                        <!--数据存储-->
+                        <tr>
+                            <td colspan="3">
+                                <div class="OrderValueStore">
+                                    <input type="hidden" class="OrderNo" value="@mainobj.OrderNo" />
+                                    <input type="hidden" class="OrderFee" value="0" />
+                                </div>
+                            </td>
+                        </tr>
+
+                    </table>
+
+                    <!--颜色 尺寸Tab-->
+                    <div id="@mainobj.HideTabsID" class="tab animated lightSpeedOut CanHideTab Bord1pxTDot">
+                        <div class="content-block Padding0rem">
+                            <!-- 选择规格 按钮 -->
+                            @{
+                int Count = 0; //计数
+                string Active = "active";
+                List<ColorEntity> BtnTemp = new List<ColorEntity>();
+                Dictionary<Guid, Guid> ColorSizeIDDic = new Dictionary<Guid, Guid>();
+                foreach (ColorEntity Colors in mainobj.ColorList)
+                {
+                    ColorSizeIDDic.Add(Colors.ColorID, Colors.ColorBadgeID);
+                    Count++;
+                    BtnTemp.Add(Colors);
+                    //每行最多几个按钮
+                    int BtnNumber = 4;
+                    if (BtnTemp.Count > 0 && BtnTemp.Count % BtnNumber == 0)
+                    {
+                        <div class="buttons-row MarginT1Rem ">
+                            @{
+                        foreach (ColorEntity ColorBtn1 in BtnTemp)
+                        {
+                            string BadgeSpace = string.Empty;
+                            string BadgeCount = string.Empty;
+                            if (ColorBtn1.ColorFee > 0)
+                            {
+                                BadgeSpace = "badge";
+                                BadgeCount = ColorBtn1.ColorFee.ToString();
+                            }
+                            <a href="#@ColorBtn1.ColorID" class="tab-link button H1P5Rem @Active">
+                                @ColorBtn1.ColorName
+                                <span class='BadgeSpace @BadgeSpace' id="@ColorBtn1.ColorBadgeID">@BadgeCount</span>
+                                <input type="hidden" class="ImgPath" value="@ColorBtn1.ColorImgPath" />
+                            </a>
+                            Active = string.Empty;//Active被使用
+                        }
+                            }
+                        </div>
+                        BtnTemp.Clear();
+                    }
+                    if (Count == mainobj.ColorList.Count && BtnTemp.Count > 0)
+                    {
+                        string MarginT0P35Rem = "MarginT0P35Rem";//大于一组按钮组时隔拉小
+                        string MarginT1Rem = "MarginT1Rem";//等于一组按钮时间隔拉大
+                        string Margin = string.Empty;
+                        if (Count > BtnNumber) { Margin = MarginT0P35Rem; }
+                        else { Margin = MarginT1Rem; }
+                        <div class="buttons-row @Margin">
+                            @{
+                        foreach (ColorEntity ColorBtn2 in BtnTemp)
+                        {
+                            <a href="#@ColorBtn2.ColorID" class="tab-link button H1P5Rem @Active ">
+                                @ColorBtn2.ColorName
+                                <span class='BadgeSpace' id="@ColorBtn2.ColorBadgeID"></span>
+                                <input type="hidden" class="ImgPath" value="@ColorBtn2.ColorImgPath" />
+                            </a>
+                            Active = string.Empty;//Active被使用
+                        }
+                            }
+                        </div>
+                        BtnTemp.Clear();
+                    }
+                }
+                            }
+
+                            <div class="tabs MarginT1Rem">
+                                @{
+                Active = "active";
+                foreach (ColorEntity ColorTab in mainobj.ColorList)
+                {
+                    <div class="tab @Active ClassTab" id="@ColorTab.ColorID">
+                        @foreach (SizePriceStoreEntity SPobj in ColorTab.SizePriceStoreList)
+                        {
+                            decimal ShowPrice = SPobj.Price / 100;
+                            <table class="PW100 MarginT1Rem ">
+                                <tr>
+                                    <td class="OneCheckBox-CartPage Bord1pxR" rowspan="2">
+                                        <center>
+                                            <div class="CheckBox">
+                                            </div>
+                                        </center>
+                                    </td>
+                                    <td class=" PW17 TextCenter">@SPobj.SizeName</td>
+                                    <td>
+                                        <!--加减控件-->
+                                        <table class="PW100">
+                                            <tr>
+                                                <td class="PW40">
+                                                    <div class="SubtracteProduct PW100 BtnDiv">
+                                                        -
+                                                    </div>
+                                                </td>
+                                                <td class="PW20 TotallProduct">
+                                                    <input type="number" value="0" class="PW100 H1P4Rem FocusAuth TextCenter NonBorder">
+                                                </td>
+                                                <td class="PW40">
+                                                    <div class="AddProduct PW100 BtnDiv">
+                                                        +
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3">
+                                                    <div class="SizePricediv" id="@SPobj.SizePriceID">
+                                                        <input type="hidden" class="MaxCount" value="@SPobj.Store">
+                                                        <input type="hidden" class="Price" value="@SPobj.Price" />
+                                                        <input type="hidden" class="Count" value="0" />
+                                                        <input type="hidden" class="OrderNo" value="@mainobj.OrderNo" />
+                                                        <input type="hidden" class="SizeFee" value="0" />
+                                                        <input type="hidden" class="ColorFeeBadgeID" value="@ColorSizeIDDic[ColorTab.ColorID]" />
+                                                        <input type="hidden" class="OderFeeBadgeID" value="@mainobj.OrderBadgeID" />
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="Padding0P5RemT">￥@ShowPrice</td>
+                                    <td class="Padding0P5RemT">库存:@SPobj.Store</td>
+                                </tr>
+                            </table>
+                        }
+                    </div>
+                        Active = string.Empty;
+                }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <nav class='bar bar-tab myfooter'>
+            <a class='tab-item active pull-left MyBack' id='PayingPage-Back'>
+                <span class='icon icon-left'></span>
+            </a>
+            <a class='tab-item' id='AllSelectBtn'>
+                <span id='AllSelectText'>全选</span>
+            </a>
+            <a class='tab-item' id='TotalMoney-PayingPage'>
+                <span>结算￥</span><span id='PayingPage-TotalFeeID'>0.00</span>
+            </a>
+        </nav>
+    </div>
+</div>

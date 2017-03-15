@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html style="text-align: center;">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    @*CDN引用*@
+    @*<link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.css">
+        <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.css">*@
+    <link href="~/Content/themes/sm-extend.css" rel="stylesheet" />
+    <link href="~/Content/themes/sm.css" rel="stylesheet" />
+    @*<link href="~/Content/CSS/Animate.min.css" rel="stylesheet" />*@
+    @RenderSection("HeadCss", required: false)
+    <title></title>
+</head>
+<body style="text-align: center;">
+    @RenderBody()
+    <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.js' charset='utf-8'></script>
+    <script src="~/Scripts/sm.js"></script>
+    @*<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.js' charset='utf-8'></script>*@
+    @*<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.js' charset='utf-8'></script>*@
+    <script src="~/Scripts/swiper.js"></script>
+    <script type="text/javascript" src="//g.alicdn.com/msui/sm/0.6.2/js/sm-city-picker.min.js" charset="utf-8"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

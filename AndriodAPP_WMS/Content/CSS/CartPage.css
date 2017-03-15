@@ -1,0 +1,38 @@
+﻿/*列表*/
+.ALLCheckBox-CartPage {
+    width: 15%;
+}
+
+.ImgTd-CartPage {
+    width: 20%;
+}
+
+.TextTd-65 {
+    color: black;
+    width: 65%;
+}
+
+.OneCheckBox-CartPage {
+    width: 15%;
+}
+
+
+.ImgTd-CartPage img {
+    width: 100%;
+}
+
+/*导航栏*/
+#CartPage-Back {
+    width: 30%;
+}
+
+    #CartPage-Back span {
+        top: 0.25rem;
+    }
+
+/*结算*/                                                                                   
+#CartPage-TotalMoney {
+    height: 2rem;
+    background-color: #F63838;
+    color: white;
+}

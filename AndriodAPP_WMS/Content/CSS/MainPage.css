@@ -1,0 +1,307 @@
+﻿#MainPage {
+    padding: 0rem;
+    margin: 0rem;
+}
+/*搜索框*/
+#SearchSpace {
+    position: absolute;
+    top: 0rem;
+    z-index: 999;
+    opacity: 0.5;
+    height: 1.5rem;
+    width: 80%;
+    left: 10%;
+}
+
+#ShopHostBadge {
+    height: 0.8rem;
+    width: 0.8rem;
+    border-radius: 50%;
+    color: #F7F7F7;
+    position: absolute;
+    top: 1.7rem;
+    left: 1.7rem;
+    background-color: #F6383A;
+    font-size: 0.5rem;
+    font-family: 'Microsoft YaHei UI';
+    z-index: 999;
+}
+
+#ShopHostSearch {
+    margin: 0rem 1rem;
+    border: 1px solid gray;
+    padding: 0rem 1.5rem;
+    font-family: Microsoft YaHei UI;
+    font-size: 0.8rem;
+    border-radius: 1.25rem;
+    color: lightgray;
+}
+
+/*店主展示*/
+#ShopHostShow-MainPage {
+    height: 2rem;
+    width: 2rem;
+}
+
+    #ShopHostShow-MainPage img {
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+    }
+
+/*工具栏高度*/
+#MainPage-footer {
+    height: 2rem;
+    /*background-color: #4CD966;*/
+}
+/*头像显示*/
+.UserInfoPageLink {
+    position: relative;
+    left: 10%;
+    width: 1.75rem;
+}
+
+.UserHeadImg {
+    position: relative;
+    top: 0.1rem;
+    left: 1rem;
+    width: 100%;
+    border-radius: 50%;
+}
+
+/*滑动*/
+#swiper-container-mainpage {
+    width: 100%;
+    height: 12.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0rem;
+}
+
+.swiper-slide {
+    text-align: center;
+    /*font-size: 18rem;*/
+    background: #fff;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+    .swiper-slide img {
+        position: relative;
+        height: 100%;
+        width: 100%;
+    }
+/*预搜索表格*/
+#PrevSearch-Table {
+    position: relative;
+    width: 100%;
+}
+
+.PrevSearch-Td {
+    width: 25%;
+}
+
+.PrevSearch-Td-Div {
+    position: relative;
+    width: 100%;
+}
+
+.PrevSearch-Img {
+    position: relative;
+    width: 100%;
+}
+
+/*展示内容加载容器*/
+#FoodsContainer {
+    position: relative;
+    width: 100%;
+}
+
+/*容器主表*/
+#MainFoodsTable {
+    position: relative;
+    width: 100%;
+}
+
+.Main50Td {
+    width: 50%;
+}
+
+/*容器详细表*/
+.DetailTable {
+    position: relative;
+    border: 0.3rem solid #EFEFF4; /*页面背景色*/
+    width: 100%;
+    height: 13.5rem;
+}
+
+    .DetailTable tbody .ImgTr {
+        position: relative;
+        width: 100%;
+        height: 11rem;
+    }
+
+.ImgTd {
+    width: 100%;
+}
+
+.ImgShow {
+    position: relative;
+    width: 100%;
+    height: 11rem;
+}
+
+.DetailTable tbody .TextTr {
+    width: 100%;
+    height: 1.25rem;
+}
+
+.TextTable {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.TextCenter {
+    text-align: center;
+}
+
+.TextLeft {
+    padding: 0rem;
+    position: relative;
+    text-align: left;
+}
+
+.TextRight {
+    padding: 0rem;
+    position: relative;
+    text-align: right;
+}
+
+
+
+/*搜索页*/
+#SearchPage-tableDiv {
+    position: relative;
+    top: 0.9rem;
+}
+
+#SearchPage-table {
+    width: 100%;
+}
+
+    #SearchPage-table tr {
+        width: 100%;
+        height: 7.5rem;
+    }
+
+        #SearchPage-table tr td {
+            padding: 0rem;
+            margin: 0rem;
+            border: 0.05rem solid lightgray;
+            width: 33%;
+            height: 2rem;
+        }
+
+#SearchPage-DoCancerBtnDiv {
+    position: relative;
+    top: 0rem;
+    width: 100%;
+    height: 2rem;
+}
+
+    #SearchPage-DoCancerBtnDiv table {
+        width: 100%;
+        height: 2rem;
+    }
+
+        #SearchPage-DoCancerBtnDiv table tbody tr {
+            width: 100%;
+            height: 2rem;
+        }
+
+            #SearchPage-DoCancerBtnDiv table tbody tr td {
+                width: 50%;
+                height: 2rem;
+            }
+
+                #SearchPage-DoCancerBtnDiv table tbody tr td a {
+                    position: relative;
+                    left: 25%;
+                    width: 50%;
+                    text-align: center;
+                    width: 50%;
+                }
+/*加盟页面*/
+#JoinUsPage-Footer {
+    height: 2rem;
+}
+
+#JoinUsPage-Back {
+    height: 2rem;
+    width: 30%;
+}
+
+    #JoinUsPage-Back span {
+        top: 0.3rem;
+    }
+
+#JoinUsPage-OK {
+    height: 2rem;
+    color: white;
+    background-color: #4CD966;
+}
+
+#JoinUsPage .content {
+    bottom: 2rem;
+}
+
+.list-block .list-group-title {
+    color: #4CD966;
+}
+
+.MyTitle {
+    width: 100%;
+    height: 2rem;
+    background-color: #F7F7F7;
+    color: #4CD966;
+}
+/*加盟店铺*/
+#MyShop2dCode {
+    background-color: pink;
+    height: 8rem;
+    width: 8rem;
+}
+
+#MyShopPage-Footer {
+    height: 2rem;
+    background-color: #4CD966;
+}
+
+#MyShopPage-OK {
+    color: white;
+}
+
+#ShopHost {
+    height: 8rem;
+    width: 8rem;
+}
+
+    #ShopHost img {
+        border-radius: 25%;
+    }
+
+#MyShopPage .content {
+    bottom: 2rem;
+}

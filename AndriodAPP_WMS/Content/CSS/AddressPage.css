@@ -1,0 +1,51 @@
+﻿/*导航栏*/
+#AddressPage-footer {
+    height: 2rem;
+}
+
+#AddressPage-Back {
+    width: 30%;
+}
+
+    #AddressPage-Back span {
+        top: 0.3rem;
+    }
+
+#AddAddress {
+    background-color: #4CD966;
+    color: #fff;
+}
+/*增加地址信息*/
+#AddAddressPage-Footer {
+    height: 2rem;
+}
+
+#AddAddressPage-Back {
+    height: 2rem;
+    width: 30%;
+}
+
+    #AddAddressPage-Back span {
+        top: 0.3rem;
+    }
+
+#AddAddressPage-OK {
+    height: 2rem;
+    color: white;
+    background-color: #4CD966;
+}
+/*地址列表信息*/
+#AddressListTable {
+    width: 100%;
+    margin: 0.5rem 0rem 0.5rem 0rem;
+    border-bottom: 0px solid lightgray;
+    background-color: white;
+}
+
+.HighShowGreen {
+    color: #4CD966;
+}
+
+.ActiveAddress {
+    height: 2rem;
+}

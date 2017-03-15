@@ -1,0 +1,167 @@
+﻿@model WMS.Entities.UserInfoPage.SendingPageEntity
+@using WMS.Entities.Base
+@using WMS.Entities.UserInfoPage
+
+<div class='page-group'>
+    @*待发货页面*@
+    <div class='page' id='PayingPage'>
+        <div class='content'>
+            @foreach (SendingSingleEntity mainobj in Model.SendingSingleEntity)
+            {
+                <div class="Bord1pxB" id="@mainobj.OrderNo">
+                    <!--主信息-->
+                    <table class="PW100 MarginTop1Rem">
+                        <tr>
+                            <td class="ALLCheckBox-CartPage">
+                                <center>
+                                    <div class="CheckBox">
+                                        <input type="hidden" class="OrderNo" value="@mainobj.OrderNo" />
+                                    </div>
+                                </center>
+                            </td>
+                            <td class="ImgTd-CartPage">
+                                <img class="Radius1Rem" src="@mainobj.LittleImgPath">
+                            </td>
+                            <td class="TextTd-65 ">
+                                @mainobj.DetailDescription
+                            </td>
+                        </tr>
+                        <!--按钮列-->
+                        <tr>
+                            <td></td>
+                            <td colspan="2">
+                                <p class="buttons-row">
+                                    <a class="button">
+                                        提醒发货
+                                    </a>
+                                    <a class="button DeleteOrder">
+                                        移除
+                                        <input type="hidden" class="OrderNo" value="@mainobj.OrderNo">
+                                        <input type="hidden" class="ShowDescreption" value="@mainobj.DetailDescription">
+                                    </a>
+                                    <a class="button ShowHideSwich">
+                                        <span class="TextSwich">详情</span>
+                                        <input type="hidden" class="HideTabsID" value="@mainobj.HideTabsID" />
+                                    </a>
+                                </p>
+                            </td>
+                        </tr>
+                        <!--数据存储-->
+                        <tr>
+                            <td colspan="3">
+                                <div class="ProductValueStore">
+                                    <input type="hidden" class="OrderNo" value="@mainobj.OrderNo" />
+                                </div>
+                            </td>
+                        </tr>
+
+                    </table>
+
+                    <!--颜色 尺寸Tab-->
+                    <div id="@mainobj.HideTabsID" class="tab animated lightSpeedOut CanHideTab Bord1pxTDot">
+                        <div class="content-block Padding0rem">
+                            <!-- 选择规格 按钮 -->
+                            @{
+                int Count = 0; //计数
+                string Active = "active";
+                List<ColorEntity> BtnTemp = new List<ColorEntity>();
+                foreach (ColorEntity btnobj in mainobj.ColorList)
+                {
+                    Count++;
+                    BtnTemp.Add(btnobj);
+                    //每行最多几个按钮
+                    int BtnNumber = 4;
+                    if (BtnTemp.Count > 0 && BtnTemp.Count % BtnNumber == 0)
+                    {
+                        <div class="buttons-row MarginT1Rem ">
+                            @{
+                        foreach (ColorEntity btnobj1 in BtnTemp)
+                        {
+                            <a href="#@btnobj1.ColorID" class="tab-link button H1P5Rem @Active">
+                                @btnobj1.ColorName
+                                @{
+                            if (btnobj1.ColorFee > 0)
+                            {
+                                <span class='badge'>@btnobj1.ColorFee</span>
+                            }
+                                }
+                                <input type="hidden" class="ImgPath" value="@btnobj1.ColorImgPath" />
+                            </a>
+                            Active = string.Empty;//Active被使用
+                        }
+                            }
+                        </div>
+                        BtnTemp.Clear();
+                    }
+                    if (Count == mainobj.ColorList.Count && BtnTemp.Count > 0)
+                    {
+                        string MarginT0P35Rem = "MarginT0P35Rem";//大于一组按钮组时隔拉小
+                        string MarginT1Rem = "MarginT1Rem";//等于一组按钮时间隔拉大
+                        string Margin = string.Empty;
+                        if (Count > BtnNumber) { Margin = MarginT0P35Rem; }
+                        else { Margin = MarginT1Rem; }
+                        <div class="buttons-row @Margin">
+                            @{
+                        foreach (ColorEntity btnobj2 in BtnTemp)
+                        {
+                            <a href="#@btnobj2.ColorID" class="tab-link button H1P5Rem @Active ">
+                                @btnobj2.ColorName
+                                @{
+                            if (btnobj2.ColorFee > 0)
+                            {
+                                <span class='badge'>@btnobj2.ColorFee</span>
+                            }
+                                }
+                            </a>
+                            Active = string.Empty;//Active被使用
+                        }
+                            }
+                        </div>
+                        BtnTemp.Clear();
+                    }
+                }
+                            }
+
+                            <div class="tabs MarginT1Rem">
+                                @{
+                Active = "active";
+                foreach (ColorEntity ColorTab in mainobj.ColorList)
+                {
+                    <div class="tab @Active" id="@ColorTab.ColorID">
+                        @foreach (SizePriceStoreEntity SPobj in ColorTab.SizePriceStoreList)
+                        {
+                            decimal ShowPrice = SPobj.Price / 100;
+                            decimal TotalFee = @SPobj.Count * ShowPrice;
+                            <table class="PW100 MarginT1Rem ">
+                                <tr>
+                                    <td class=" PW17 TextCenter">@SPobj.SizeName</td>
+                                    <td>
+                                        <!--选取信息-->
+                                        共 @SPobj.Count 件, ￥@TotalFee
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="Padding0P5RemT">￥@ShowPrice</td>
+                                    <td class="Padding0P5RemT">库存:@SPobj.Store</td>
+                                </tr>
+                            </table>
+                        }
+                    </div>
+                        Active = string.Empty;
+                }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <nav class='bar bar-tab myfooter'>
+                <a class='tab-item active pull-left MyBack' id="SendingPage-Back">
+                    <span class='icon icon-left'></span>
+                </a>
+            </nav>
+        </div>
+    </div>
+</div>
+
+

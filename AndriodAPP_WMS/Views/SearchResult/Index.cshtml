@@ -1,0 +1,40 @@
+﻿@model WMS.Entities.WeChatEntity.WxUserInfo
+<div class='page-group'>
+    <div class='page' id='SearchResultPage'>
+        <div class='content'>
+            <div class="content">
+                <div class="content-block">
+
+                    <div class="buttons-tab fixed-tab" data-offset="44">
+                        <a id="BaseHasSales" class="tab-link active button BaseActive">按销量<span class="icon icon-down"></span></a>
+                        <a id="BasePrice" class="tab-link button BaseActive">按价格<span class="icon icon-down"></span></a>
+                        <a id="BaseTalk" class="tab-link button BaseActive">按评价<span class="icon icon-down"></span></a>
+                    </div>
+                    <div>2</div>
+                    <div>3</div>
+                    <div>e</div>
+                    <div>7</div>
+                    @{
+
+                        <div>2</div>
+                        <div>3</div>
+                        <div>4</div>
+
+
+                        @Model.ChildrenShopList[0].ToString();
+
+                        <div>h</div>
+                        <div>h</div>
+                        <div>h</div>
+                    }
+                    <div class="searchbar row">
+                        <div class="search-input col-85">
+                            <input type="search" id='search' placeholder='输入关键字...' />
+                        </div>
+                        <a class="button button-fill button-primary col-15"><span class="icon icon-search"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

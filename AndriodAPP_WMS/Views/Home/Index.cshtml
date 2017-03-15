@@ -1,0 +1,204 @@
+﻿@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using WMS.Entities.MainPage
+@using WMS.Entities.Base
+@model WMS.Entities.MainPage.MianPageEntity
+@section HeadCss{
+    <link href='~/Content/CSS/All-V2.css?data=@{string data = DateTime.Now.ToString();@data}' rel='stylesheet' />
+    <link href='~/Content/CSS/MainPage.css' rel='stylesheet' />
+    <link href='~/Content/CSS/UserInfoPage.css' rel='stylesheet' />
+    <link href='~/Content/CSS/ProductDetailPage.css' rel='stylesheet' />
+    <link href='~/Content/CSS/CartPage.css' rel='stylesheet' />
+    <link href='~/Content/CSS/AddressPage.css' rel='stylesheet' />
+}
+@section Scripts{
+    <script src='~/Scripts/All.js'></script>
+    <script src='~/Scripts/MainPage/MainPage.js'></script>
+    <script src='~/Scripts/CartPage/CartPage.js'></script>
+    <script src='~/Scripts/ProductDetailPage/ProductDetailPage.js'></script>
+    <script src='~/Scripts/UserInfoPage/UserInfoPage.js'></script>
+    <script src='~/Scripts/AddressPage/AddressPage.js'></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>
+    wx.config({
+        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        appId: '@Model.PayConfigParam.appId', // 必填，公众号的唯一标识
+        timestamp: '@Model.PayConfigParam.timestamp', // 必填，生成签名的时间戳
+        nonceStr: '@Model.PayConfigParam.noncestr', // 必填，生成签名的随机串
+        signature: '@Model.PayConfigParam.sign',// 必填，签名，见附录1
+        jsApiList: [
+            'chooseWXPay',
+        ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+    });
+</script>
+}
+<body>
+    <div class='page-group'>
+        @*主页*@
+        <div class='page page-current' id='MainPage'>
+            <!-- 工具栏 -->
+            <nav class='bar bar-tab myfooter'>
+                <a class='tab-item  active HomePageLink'>
+                    <span class='icon icon-home '></span>
+                </a>
+                <a class='tab-item SearchPageLink'>
+                    <span class='icon icon-search'></span>
+                </a>
+                <a class='tab-item CartPageLink'>
+                    <input type="hidden" class="OpenID" value="@Model.OpenID" />
+                    <span class='icon icon-cart'></span>
+                    @{
+                        if (Model.CartBadge > 0)
+                        {
+                            <span class='badge'>@Model.CartBadge</span>
+                        }
+                    }
+                </a>
+                <a class='tab-item'>
+                    <div>
+                        <div class='UserInfoPageLink'>
+                            <img src='@Model.UserHeadImg' class='UserHeadImg' />
+                            <input type="hidden" class="OpenID" value="@Model.OpenID" />
+                        </div>
+                    </div>
+                    @{
+                        if (Model.UserInfoBadge > 0)
+                        {
+                            <span class='badge'>@Model.UserInfoBadge</span>
+                        }
+                    }
+                </a>
+            </nav>
+            <!-- 主内容 -->
+            <div class='content infinite-scroll infinite-scroll-bottom' data-distance='100'>
+                <input type="hidden" id="OpenID" value="@Model.OpenID" />
+                <!-- 搜索框 -->
+                @{
+                    //具有店铺或附属于店铺
+                    if (Model.HasShop || string.IsNullOrEmpty(Model.ParentShopOpenID))
+                    {
+                        string HeadImgTemp = string.Empty;
+                        string NikeNameTemp = string.Empty;
+                        //具有自己的商铺则显示自己的商铺，否则显示父商铺
+                        if (Model.HasShop)
+                        {
+                            HeadImgTemp = Model.UserHeadImg;
+                            NikeNameTemp = "[" + Model.NikeName + "]的商铺 搜索";
+                        }
+                        else
+                        {
+                            HeadImgTemp = Model.ParentShopHeadImg;
+                            NikeNameTemp = "在 [" + Model.ParentShopNikeName + "商铺] 中搜索";
+                        }
+                        <div @*class="WhiteBackGroud"*@>
+                            <table class="PW100 MarginBT0P5Rem">
+                                <tr>
+                                    <td class="W2Rem">
+                                        <div id="ShopHostShow-MainPage">
+                                            <img src="@HeadImgTemp" />
+                                            <div id='ShopHostBadge'>商</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <center>
+                                                <table>
+                                                    <tr>
+                                                        <td class="TextCenter">
+                                                            <div id="ShopHostSearch" class="DoSearch">
+                                                                <span class="icon icon-search"></span>
+                                                                @NikeNameTemp
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </center>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    }
+                    //不具有店铺，不附属店铺
+                    else
+                    {
+                        <div id='SearchSpace'>
+                            <div class='search-input DoSearch'>
+                                <label class='icon icon-search' for='search'></label>
+                                <input type='search' id='SearchFocus' value='输入关键字...' />
+                            </div>
+                        </div>
+                    }
+                }
+                <!-- 滑动 -->
+                <div class='swiper-container' id='swiper-container-mainpage'>
+                    <div class='swiper-wrapper'>
+                        @{
+                            foreach (SwiperEntity obj in Model.SwiperList)
+                            {
+                                <div class='swiper-slide'>
+                                    <img src="@obj.ImgPath" />
+                                    <input type="hidden" class="OpenID" value="@obj.OpenID" />
+                                    <input type="hidden" class="Url" value="@obj.Url" />
+                                    <input type="hidden" class="ProductID" value="@obj.ProductID" />
+                                </div>
+                            }
+                        }
+                    </div>
+                    <div class='swiper-pagination'></div>
+                </div>
+
+                <!-- 预搜索表格 -->
+                <div>
+                    <table id='PrevSearch-Table'>
+                        <tr>
+                            <td class='PrevSearch-Td SearchTypeLink'>
+                                <img class='PrevSearch-Img' src='~/Content/images/MainPage/KTV.png' />
+                            </td>
+                            <td class='PrevSearch-Td SearchTypeLink'>
+                                <img class='PrevSearch-Img' src='~/Content/images/MainPage/%e7%94%b5%e5%bd%b1.png' />
+                            </td>
+                            <td class='PrevSearch-Td SearchTypeLink'>
+                                <img class='PrevSearch-Img' src='~/Content/images/MainPage/%e5%ba%a6%e5%81%87%e5%87%ba%e8%a1%8c.png' />
+                            </td>
+                            <td class='PrevSearch-Td SearchTypeLink'>
+                                <img class='PrevSearch-Img' src='~/Content/images/MainPage/%e5%ae%b6%e8%a3%85.png' />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class='PrevSearch-Td SearchTypeLink'>
+                                <img class='PrevSearch-Img' src='~/Content/images/MainPage/%e6%99%af%e7%82%b9.png' />
+                            </td>
+                            <td class='PrevSearch-Td SearchTypeLink'>
+                                <img class='PrevSearch-Img' src='~/Content/images/MainPage/%e9%85%92%e5%ba%97.png' />
+                            </td>
+                            <td class='PrevSearch-Td SearchTypeLink'>
+                                <img class='PrevSearch-Img' src='~/Content/images/MainPage/%e4%b8%bd%e4%ba%ba.png' />
+                            </td>
+                            <td class='PrevSearch-Td SearchTypeLink'>
+                                <img class='PrevSearch-Img' src='~/Content/images/MainPage/%e7%94%9f%e6%b4%bb%e6%9c%8d%e5%8a%a1.png' />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- 无限刷新容器 -->
+                @*<ul class='list-container'></ul>*@
+                <div id='FoodsContainer'>
+                    <table id='MainFoodsTable'>
+                        @{
+                            var ProductsString = new HtmlString(new WMS.Methods.MainPageMethod().GetProductsHtml(Model.OpenID).ReturnData);
+                            @ProductsString;
+                        }
+                    </table>
+                </div>
+                <!-- 加载提示符 -->
+                <div class='infinite-scroll-preloader'>
+                    <div class='preloader'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

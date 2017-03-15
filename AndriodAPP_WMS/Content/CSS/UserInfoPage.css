@@ -1,0 +1,119 @@
+﻿
+#UserInfoPage-footer {
+    bottom: 0rem;
+    height: auto;
+    color: black;
+}
+
+#UserInfoPage .content {
+    bottom: 2rem;
+}
+
+#ImgBackgroung {
+    position: relative;
+    width: 100%;
+    height: 12rem;
+    background-image: url("../images/UserInfoPage/Background.png");
+    background-size: 100% 100%;
+}
+
+
+#imgtd {
+    left: 0.5rem;
+    width: 30%;
+    height: 100%;
+    padding: 0rem;
+    position: relative;
+    bottom: 0rem;
+}
+
+    #imgtd img {
+        border-radius: 25%;
+    }
+
+#UserBaseInfoHeadImg {
+    height: 6rem;
+}
+/*Tab框*/
+#UserInfoTabs {
+    position: relative;
+    top: 0.25rem;
+    display: none;
+}
+
+/*退款*/
+/*导航栏*/
+#AskChargebackPage-footer {
+    height: 2rem;
+}
+
+#AskChargebackPage-Back {
+    width: 30%;
+}
+
+    #AskChargebackPage-Back span {
+        top: 0.4rem;
+    }
+/*退款数值*/
+#AskChargebackPage-Ask {
+    color: white;
+    background-color: #4CD966;
+}
+
+#AskValue {
+    color: #F6383A;
+}
+
+/*完成页*/
+#FinisiPage-Back {
+    height: 2rem;
+    width: 50%;
+}
+
+    #FinisiPage-Back span {
+        top: 0.4rem;
+    }
+
+#DeleteAllSelect-FinisiPage {
+    background-color: #F6383A;
+    color: white;
+}
+/*待支付页*/
+/*导航栏*/
+#PayingPage-Back {
+    width: 30%;
+}
+
+    #PayingPage-Back span {
+        top: 0.4rem;
+    }
+
+/*结算*/
+#TotalMoney-PayingPage {
+    height: 2rem;
+    background-color: #F63838;
+    color: white;
+}
+
+/*待收货页面*/
+#ReceivingPage-Back {
+    height: 2rem;
+    width: 100%;
+    background-color: #4CD966;
+    color: white;
+}
+
+    #ReceivingPage-Back span {
+        top: 0.4rem;
+    }
+/*待发货*/
+#SendingPage-Back {
+    height: 2rem;
+    width: 100%;
+    background-color: #4CD966;
+    color: white;
+}
+
+    #SendingPage-Back span {
+        top: 0.4rem;
+    }

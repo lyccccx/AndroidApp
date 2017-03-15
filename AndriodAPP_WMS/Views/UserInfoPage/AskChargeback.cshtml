@@ -1,0 +1,284 @@
+﻿@model WMS.Entities.UserInfoPage.ChargebackSingleEntity
+@using WMS.Entities.Base
+
+<div class='page-group'>
+    @*申请退款*@
+    <div class='page' id='UserInfoPage'>
+        <div class='content'>
+            <div class="Bord1pxB" id="@Model.OrderNo">
+                <!--主信息-->
+                <table class="PW100 MarginTop1Rem">
+                    <tr>
+                        <td class="ALLCheckBox-CartPage">
+                            <center>
+                                <div class="CheckBox">
+                                    <input type="hidden" class="OrderNo" value="@Model.OrderNo" />
+                                </div>
+                                <span class="SmallText">全选</span>
+                            </center>
+                        </td>
+                        <td class="ImgTd-CartPage">
+                            <img class="Radius1Rem" src="@Model.LittleImgPath">
+                        </td>
+                        <td class="TextTd-65 ">
+                            @Model.DetailDescription
+                        </td>
+                    </tr>
+                    <!--按钮列-->
+                    <tr>
+                        <td></td>
+                        <td colspan="2">
+                            <p class="buttons-row">
+                                <a class="button DeleteOrder">
+                                    移除
+                                    <input type="hidden" class="OrderNo" value="@Model.OrderNo">
+                                    <input type="hidden" class="ShowDescreption" value="@Model.DetailDescription">
+                                </a>
+                                <a class="button ShowHideSwich">
+                                    <span class="TextSwich">详情</span>
+                                    <span class="BadgeSpace" id="@Model.OrderBadgeID"></span>
+                                    <input type="hidden" class="HideTabsID" value="@Model.HideTabsID" />
+                                </a>
+                            </p>
+                        </td>
+                    </tr>
+                    <!--数据存储-->
+                    <tr>
+                        <td colspan="3">
+                            <div class="ProductValueStore">
+                                <input type="hidden" class="OrderBadgeID" value="@Model.OrderBadgeID" />
+                                <input type="hidden" class="OrderNo" value="@Model.OrderNo" />
+                                <input type="hidden" class="ProductFee" value="" />
+                            </div>
+                        </td>
+                    </tr>
+
+                </table>
+
+                <!--颜色 尺寸Tab-->
+                <div id="@Model.HideTabsID" class="tab animated lightSpeedOut CanHideTab Bord1pxTDot">
+                    <div class="content-block Padding0rem">
+                        <!-- 选择规格 按钮 -->
+                        @{
+                            int Count = 0; //计数
+                            string Active = "active";
+                            List<ColorEntity> BtnTemp = new List<ColorEntity>();
+                            foreach (ColorEntity btnobj in Model.ColorList)
+                            {
+                                Count++;
+                                BtnTemp.Add(btnobj);
+                                //每行最多几个按钮
+                                int BtnNumber = 4;
+                                if (BtnTemp.Count > 0 && BtnTemp.Count % BtnNumber == 0)
+                                {
+                                    <div class="buttons-row MarginT1Rem ">
+                                        @{
+                                    foreach (ColorEntity obj2 in BtnTemp)
+                                    {
+                                        <a href="#@btnobj.ColorID" class="tab-link button H1P5Rem @Active">
+                                            @btnobj.ColorName
+                                            <span class='BadgeSpace' id="@obj2.ColorBadgeID"></span>
+                                            <input type="hidden" class="ImgPath" value="@obj2.ColorImgPath" />
+                                        </a>
+                                        Active = string.Empty;//Active被使用
+                                    }
+                                        }
+                                    </div>
+                                    BtnTemp.Clear();
+                                }
+                                if (Count == Model.ColorList.Count && BtnTemp.Count > 0)
+                                {
+                                    string MarginT0P35Rem = "MarginT0P35Rem";//大于一组按钮组时隔拉小
+                                    string MarginT1Rem = "MarginT1Rem";//等于一组按钮时间隔拉大
+                                    string Margin = string.Empty;
+                                    if (Count > BtnNumber) { Margin = MarginT0P35Rem; }
+                                    else { Margin = MarginT1Rem; }
+                                    <div class="buttons-row @Margin">
+                                        @{
+                                    foreach (ColorEntity btnobj2 in BtnTemp)
+                                    {
+                                        <a href="#@btnobj2.ColorID" class="tab-link button H1P5Rem @Active ">
+                                            @btnobj2.ColorName
+                                            <span class='BadgeSpace' id="@btnobj2.ColorBadgeID"></span>
+                                        </a>
+                                        Active = string.Empty;//Active被使用
+                                    }
+                                        }
+                                    </div>
+                                    BtnTemp.Clear();
+                                }
+                            }
+                        }
+
+                        <div class="tabs MarginT1Rem">
+                            @{
+                                Active = "active";
+                                foreach (ColorEntity ColorTab in Model.ColorList)
+                                {
+                                    <div class="tab @Active" id="@ColorTab.ColorID">
+                                        @foreach (SizePriceStoreEntity SPobj in ColorTab.SizePriceStoreList)
+                                        {
+                                            decimal ShowPrice = SPobj.Price / 100;
+                                            <table class="PW100 MarginT1Rem ">
+                                                <tr>
+                                                    <td class="OneCheckBox-CartPage Bord1pxR" rowspan="2">
+                                                        <center>
+                                                            <div class="CheckBox">
+                                                            </div>
+                                                        </center>
+                                                    </td>
+                                                    <td class=" PW17 TextCenter">@SPobj.SizeName</td>
+                                                    <td>
+                                                        <!--加减控件-->
+                                                        <table class="PW100">
+                                                            <tr>
+                                                                <td class="PW33">
+                                                                    <div class="SubtracteProduct PW100 BtnDiv">
+                                                                        -
+                                                                    </div>
+                                                                </td>
+                                                                <td class="PW33 TotallProduct">
+                                                                    <input type="number" value="0" class="PW100 H1P4Rem FocusAuth TextCenter">
+                                                                </td>
+                                                                <td class="PW33">
+                                                                    <div class="AddProduct PW100 BtnDiv">
+                                                                        +
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="3">
+                                                                    <div class="SizePricediv">
+                                                                        <input type="hidden" class="MaxCount" value="@SPobj.Store">
+                                                                        <input type="hidden" class="Price" value="@SPobj.Price" />
+                                                                        <input type="hidden" class="OrderNo" value="@Model.OrderNo" />
+                                                                        <input type="hidden" name="SizeFee" class="SizeFee" value="0" />
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="Padding0P5RemT">￥@ShowPrice</td>
+                                                    <td class="Padding0P5RemT">库存:@SPobj.Store</td>
+                                                </tr>
+                                            </table>
+                                        }
+                                    </div>
+                                        Active = string.Empty;
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                @*<table class="PW100 MarginTop1Rem Bord1pxT Bord1pxB">
+                        <!--选择框-->
+                        <tr>
+                            <td class="ALLCheckBox-CartPage">
+                                <center>
+                                    <div class="CheckBox"></div>
+                                </center>
+                            </td>
+                            <td class="ImgTd-CartPage">
+                                <img class="Radius1Rem" src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style=''>
+                            </td>
+                            <td class="TextTd-65">
+                                描述 描述 描述 描述 描述
+                            </td>
+                        </tr>
+                        <!--按钮列-->
+                        <tr>
+                            <td colspan="2"></td>
+                            <td>
+                                <p class="buttons-row">
+                                    <a class="button ShowHideSwich">
+                                        <span class="TextSwich">详情</span>
+                                    </a>
+                                </p>
+                            </td>
+                        </tr>
+                        <!--可隐藏列-->
+                        <tr class="CanHideTr">
+                            <td></td>
+                            <td class="ImgTd-CartPage">
+                                <img class="Radius1Rem" src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style=''>
+                            </td>
+                            <td class="TextTd-65" colspan="2">
+                                <table class="PW100">
+                                    <tr>
+                                        <td class="MiddleText Padding0P5Rem">黑色 XL ￥25.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <!--购买信息-->
+                                            <span class="MiddleText">共计：30件，￥750.00</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <!--存储数据列-->
+                        <tr class="StoreValue">
+                            <td colspan="3">
+                                <input type="hidden" value="ID" />
+                                <input type="hidden" value="OrderNumberID" />
+                            </td>
+                        </tr>
+                    </table>*@
+            </div>
+
+            <!--可退款金额-->
+            <div class="list-block">
+                <ul>
+                    <!-- 可退款金额 -->
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">可退款金额为</div>
+                                <div class="item-input">
+                                    <input type="text" id="CanChargebackAskValue" placeholder="Your name" value="￥750.00" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">输入退款金额</div>
+                                <div class="item-input">
+                                    <input type="text" name="ChargebackAskValue">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="align-top">
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-comment"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">退款说明</div>
+                                <div class="item-input">
+                                    <textarea id="ChargebackDescription"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <nav class='bar bar-tab' id='AskChargebackPage-footer'>
+            <a class='tab-item active pull-left MyBack' id='AskChargebackPage-Back'>
+                <span class='icon icon-left'></span>
+            </a>
+            <a class='tab-item' id='AskChargebackPage-Ask'>
+                申请退款<span id="AskValue">￥750.00</span>
+            </a>
+        </nav>
+
+    </div>
+</div>

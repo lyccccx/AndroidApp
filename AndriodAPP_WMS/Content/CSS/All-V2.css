@@ -1,0 +1,457 @@
+﻿* {
+    font-family: 微软雅黑;
+}
+
+/*每一个页面的导航栏*/
+.bar-tab .tab-item {
+    height: 2rem;
+}
+
+/*每一页的底部都留1rem，导航栏会遮挡*/
+.bar-tab ~ .content {
+    bottom: 2rem;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.WhiteBackGroud {
+    background-color: #F7F7F7;
+}
+/*右上角小提示*/
+.badge {
+    margin: 0rem 0rem 0rem 0.25rem;
+    color: white;
+    background-color: #F6383A;
+}
+/*字体处理*/
+.SmallText {
+    font-size: 0.5rem;
+    color: gray;
+}
+
+.MiddleText {
+    font-size: 0.65rem;
+    color: gray;
+}
+
+.BigText {
+    font-size: 1.25rem;
+    color: #4CD966;
+}
+/*边距高度处理*/
+.PW100 {
+    width: 100%;
+}
+
+.PW50 {
+    width: 50%;
+}
+
+.PW20 {
+    width: 20%;
+}
+
+.PW40 {
+    width: 40%;
+}
+
+.PW10 {
+    width: 10%;
+}
+
+.PW33 {
+    width: 33%;
+}
+
+.PW17 {
+    width: 17%;
+}
+
+.PW25 {
+    width: 25%;
+}
+
+.PW65 {
+    width: 65%;
+}
+
+.PH100 {
+    height: 100%;
+}
+
+.W2Rem {
+    width: 2rem;
+}
+
+.MarPad0 {
+    padding: 0rem;
+    margin: 0rem 0rem 0.5rem 0rem;
+}
+
+.Margin0Rem {
+    margin: 0rem;
+}
+
+.MarginTop1Rem {
+    margin-top: 1rem;
+}
+
+.MarginB0P35Rem {
+    margin-bottom: 0.3rem;
+}
+
+.MarginT1Rem {
+    margin-top: 1rem;
+}
+
+.MarginT0P35Rem {
+    margin-top: 0.35rem;
+}
+
+.Margin1Rem {
+    margin: 1rem;
+}
+
+.MarginBT0P5Rem {
+    margin: 0.5rem 0rem;
+}
+
+.Padding0P5Rem {
+    padding: 0.5rem;
+}
+
+.Padding0P5RemT {
+    padding-top: 0.5rem;
+}
+
+.Padding0rem {
+    padding: 0rem;
+}
+
+.Padding1RemR {
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+    padding-left: 0rem;
+    padding-right: 1rem;
+}
+
+.Padding1RemL {
+    padding-left: 1rem;
+}
+
+.H5Rem {
+    height: 5rem;
+}
+
+.H2Rem {
+    height: 2rem;
+}
+
+.H1P5Rem {
+    height: 1.5rem;
+}
+
+.H1P4Rem {
+    height: 1.4rem;
+}
+
+.H3Rem {
+    height: 3rem;
+}
+
+/*边框处理*/
+.Bord1px {
+    border: 1px solid #4CD966;
+}
+
+.Bord1pxB {
+    border-bottom: 1px solid #4CD966;
+}
+
+.Bord1pxR {
+    border-right: 1px solid #4CD966;
+}
+
+.Bord1pxL {
+    border-left: 1px solid #4CD966;
+}
+
+.Bord1pxT {
+    border-top: 1px solid #4CD966;
+}
+
+.Bord1pxR {
+    border-right: 1px solid lightgray;
+}
+
+.Bord1pxTDot {
+    border-top: 1px dashed #4CD966;
+}
+
+.Bord1pxTRBgray {
+    border-bottom: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+}
+
+/*图片倒圆*/
+.Radius1Rem {
+    border-radius: 1rem;
+}
+
+.Radius0P5Rem {
+    border-radius: 0.5rem;
+}
+/*位置处理*/
+.Right2Rem {
+    position: relative;
+    right: 2rem;
+}
+
+.Top1Rem {
+    position: relative;
+    top: 1rem;
+}
+
+.Top3Rem {
+    position: relative;
+    top: 3rem;
+}
+
+/*选择框*/
+.CheckBox {
+    border: 1px solid #4CD966;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 0.5rem;
+}
+
+.CheckBoxActive {
+    background-image: url("/Content/images/Icon/CheckBox.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.FloatLeft {
+    float: left;
+}
+
+/*并排按钮*/
+p {
+    margin: 0rem 0rem 0.3rem 0rem;
+}
+
+.buttons-row .button {
+    width: 100%;
+    color: gray;
+    border-color: lightgray;
+}
+/*加减按钮*/
+.BtnDiv {
+    border: 1px solid lightgray;
+    border-radius: 0.5rem;
+    color: #4CD966;
+}
+
+/*微章提示类*/
+.BadgeSpace {
+    color: red;
+}
+
+/*天猫文本颜色样式*/
+.TextColor {
+    color: #9f9f9f;
+}
+/*导航栏*/
+.myfooter {
+    height: 2rem;
+}
+
+.myfooter-Back {
+    height: 2rem;
+}
+
+    .myfooter-Back span {
+        top: 0.3rem;
+    }
+
+
+
+/*动画样式*/
+.animated {
+    -webkit-animation-duration: .3s;
+    animation-duration: .3s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes lightSpeedIn {
+    0% {
+        -webkit-transform: translate3d(100%,0,0) skewX(-30deg);
+        transform: translate3d(100%,0,0) skewX(-30deg);
+        opacity: 0;
+    }
+
+    60% {
+        -webkit-transform: skewX(20deg);
+        transform: skewX(20deg);
+        opacity: 1;
+    }
+
+    80% {
+        -webkit-transform: skewX(-5deg);
+        transform: skewX(-5deg);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: none;
+        transform: none;
+        opacity: 1;
+    }
+}
+
+@keyframes lightSpeedIn {
+    0% {
+        -webkit-transform: translate3d(100%,0,0) skewX(-30deg);
+        -ms-transform: translate3d(100%,0,0) skewX(-30deg);
+        transform: translate3d(100%,0,0) skewX(-30deg);
+        opacity: 0;
+    }
+
+    60% {
+        -webkit-transform: skewX(20deg);
+        -ms-transform: skewX(20deg);
+        transform: skewX(20deg);
+        opacity: 1;
+    }
+
+    80% {
+        -webkit-transform: skewX(-5deg);
+        -ms-transform: skewX(-5deg);
+        transform: skewX(-5deg);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: none;
+        -ms-transform: none;
+        transform: none;
+        opacity: 1;
+    }
+}
+
+.lightSpeedIn {
+    -webkit-animation-name: lightSpeedIn;
+    animation-name: lightSpeedIn;
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+}
+
+@-webkit-keyframes lightSpeedOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: translate3d(100%,0,0) skewX(30deg);
+        transform: translate3d(100%,0,0) skewX(30deg);
+        opacity: 0;
+    }
+}
+
+@keyframes lightSpeedOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: translate3d(100%,0,0) skewX(30deg);
+        -ms-transform: translate3d(100%,0,0) skewX(30deg);
+        transform: translate3d(100%,0,0) skewX(30deg);
+        opacity: 0;
+    }
+}
+
+.lightSpeedOut {
+    -webkit-animation-name: lightSpeedOut;
+    animation-name: lightSpeedOut;
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+}
+/*占位*/
+.MyBack {
+    /*JS返回使用*/
+}
+/*占位*/
+.OpenIDLink {
+    /*通过OpenID加载Url的Link*/
+}
+/*占位*/
+.SearchTypeLink {
+    /*搜索类别的Url的链接*/
+}
+/*占位*/
+.ColorSwich {
+    /*单击颜色切换颜色图片*/
+}
+
+/*NonBorder*/
+.NonBorder {
+    border: none;
+    border-radius: 0.5rem;
+}
+
+/*页面展示空时，导航栏全为返回*/
+.AllBack {
+    height: 2rem;
+    width: 100%;
+    background-color: #4CD966;
+    color: white;
+}
+
+    .AllBack span {
+        top: 0.4rem;
+        color: white;
+    }
+
+/*安全支付页面*/
+#SafePayImg {
+    width: 100%;
+}
+
+#ConfirmPage-Back {
+    width: 100%;
+    background-color: #4CD966;
+    height: 2rem;
+    color: white;
+}
+
+    #ConfirmPage-Back span {
+        top: 0.35rem;
+    }
+
+#WxSafePay {
+    width: 60%;
+    height: 1.5rem;
+    border-radius: 0.5rem;
+    color: white;
+    background-color: #4CD966;
+    margin-top: 2rem;
+}
+
+    #WxSafePay span {
+        position: relative;
+        top: 0.1rem;
+    }
+
+#DealFeeTip {
+    font-family: "微软雅黑";
+    font-size: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}

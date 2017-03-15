@@ -1,0 +1,178 @@
+﻿@model WMS.Entities.WeChatEntity.ShopInfoPageEntity
+@using WMS.Entities.WeChatEntity
+
+<div class='page-group'>
+
+    <div class="page" id="MyShopPage">
+
+        <div class="content">
+            <!--加盟信息-->
+            <div class="BigText MyTitle"> @Model.nickname 的商铺</div>
+            <form id="JoinUsPage-Form" action="~/Home/SaveUserJoinUsInfo" method="post">
+                <div class="list-block">
+                    <ul>
+                        <!-- 昵称 -->
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon icon-form-name"></i></div>
+                                <div class="item-inner">
+                                    <div class="item-title label">商铺名称</div>
+                                    <div class="item-input">
+                                        <input type="text" value="@Model.nickname" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- 联系人 -->
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon icon-form-name"></i></div>
+                                <div class="item-inner">
+                                    <div class="item-title label">联系人</div>
+                                    <div class="item-input">
+                                        <input type="text" value="@Model.LinkMan" placeholder="姓名" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- 联系电话 -->
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon icon-form-name"></i></div>
+                                <div class="item-inner">
+                                    <div class="item-title label">联系电话</div>
+                                    <div class="item-input">
+                                        <input type="number" value="@Model.LinkManPhone" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- 联系邮箱 -->
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon icon-form-name"></i></div>
+                                <div class="item-inner">
+                                    <div class="item-title label">联系邮箱</div>
+                                    <div class="item-input">
+                                        <input type="text" value="@Model.Email" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- 微信号 -->
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon icon-form-name"></i></div>
+                                <div class="item-inner">
+                                    <div class="item-title label">微信号</div>
+                                    <div class="item-input">
+                                        <input type="number" value="@Model.WxID" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+            <!--我的客户-->
+            <div class="BigText MyTitle Bord1pxT"> 我的客户</div>
+            @if (Model.ChildrenEmployeelist.Count < 1)
+            {
+                <div>您还没有客户</div>
+            }
+            else
+            {
+                <table class="ShopList PW100">
+                    <tr>
+                        <td>客户头像</td>
+                        <td>客户名称</td>
+                        <td>客户花钱</td>
+                    </tr>
+                    @foreach (ChildrenEmployee user in Model.ChildrenEmployeelist)
+                    {
+                        <tr>
+                            <td class="PW33">
+                                <img class="H3Rem Radius1Rem" src="@user.HeadImgUrl" />
+                            </td>
+                            <td>
+                                @user.NikeName
+                            </td>
+                            <td>
+                                ￥@user.Profit <a><u>详情</u></a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+            <div class="SmallText TextLeft Margin1Rem">
+                注:别人扫描你的商铺二维码后可成为你的客户,客户购买你商铺的商品，您具有
+                <span class="redcolor">提成</span>
+                (每件商品提成随商品而定)
+            </div>
+
+            <!--直属商铺-->
+            <div class="BigText MyTitle Bord1pxT"> 直属商铺</div>
+            @if (Model.ChildrenShopList.Count < 1)
+            {
+                <div>您还没有直属商铺</div>
+            }
+            else
+            {
+                <table class="ShopList PW100">
+                    <tr>
+                        <td>商铺门面</td>
+                        <td>商铺名称</td>
+                        <td>商铺盈利</td>
+                    </tr>
+                    @foreach (ChildrenEmployee user in Model.ChildrenEmployeelist)
+                    {
+                        <tr>
+                            <td class="PW33">
+                                <img class="H3Rem Radius1Rem" src="@user.HeadImgUrl" />
+                            </td>
+                            <td>
+                                @user.NikeName
+                            </td>
+                            <td>
+                                ￥@user.Profit <a><u>详情</u></a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+            <div class="SmallText TextLeft Margin1Rem">
+                注:你的直属员工加盟后自动升级为直属商铺，你获取直属商铺利润的
+                <span class="redcolor">8%</span>作为提成
+            </div>
+
+            <table class="PW100">
+                <tr>
+                    <td class="PW50">
+                        <!--店铺二维码-->
+                        <div class="BigText MyTitle Bord1pxT"> 商铺二维码</div>
+                        <center>
+                            <div id="MyShop2dCode">
+                                <img src="@Model.ShopCodeUrl" class="PW100 PH100" />
+                            </div>
+                        </center>
+                    </td>
+                    <td class="PW50">
+                        <!--店主信息-->
+                        <div class="BigText MyTitle Bord1pxT"> 掌柜的</div>
+                        <center>
+                            <div id="ShopHost">
+                                <img src="@Model.headimgurl" class="PW100 PH100" />
+                            </div>
+                        </center>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+        <!-- 工具栏 -->
+        <nav class='bar bar-tab' id="MyShopPage-Footer">
+            <a class='tab-item' id='MyShopPage-OK'>确认</a>
+        </nav>
+    </div>
+
+</div>
