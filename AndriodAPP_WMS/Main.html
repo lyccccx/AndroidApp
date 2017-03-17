@@ -19,41 +19,59 @@
 	</head>
 
 	<body>
-		<div class="page-group">
-			<div class="page page-current">
-				<div class="content infinite-scroll infinite-scroll-bottom" data-distance="100">
-					<div class="list-block">
-						<ul class="list-container">
-						</ul>
-					</div>
-					<!-- 加载提示符 -->
-					<div class="infinite-scroll-preloader">
-						<div class="preloader"></div>
+		<div class="content-padded">
+			<div class="page-group">
+				<div class="page page-current">
+					<div class="content infinite-scroll infinite-scroll-bottom" data-distance="100">
+						<div class="list-block">
+							<ul class="list-container">
+							</ul>
+						</div>
+						<!-- 加载提示符 -->
+						<div class="infinite-scroll-preloader">
+							<div class="preloader"></div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+
+		<!--页脚-->
+		<nav class="bar bar-tab">
+			<a class="tab-item external" href="#">
+				<span class="icon icon-me"></span>
+				<span class="tab-label">Me</span>
+			</a>
+			<a class="tab-item external active" href="#">
+				<span class="icon icon-home"></span>
+				<span class="tab-label">主页</span>
+			</a>
+			<a class="tab-item external" href="#">
+				<span class="icon icon-star"></span>
+				<span class="tab-label">购物车</span>
+				<span class="badge">2</span>
+			</a>
+		</nav>
 	</body>
 
-	//确保多有的JS文件都在次加载一遍，保证$.init()只执行一次
-	<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.js' charset='utf-8'></script>
-	<script src="Scripts/sm.js"></script>
+	<!--确保多有的JS文件都在次加载一遍，保证$.init()只执行一次-->
 
-	<script src="Scripts/swiper.js"></script>
-	<script type="text/javascript" src="//g.alicdn.com/msui/sm/0.6.2/js/sm-city-picker.min.js" charset="utf-8"></script>
+	<!--<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.js' charset='utf-8'></script>-->
+	<!--<script src="Scripts/sm.js"></script>-->
+	<!--<script src="Scripts/swiper.js"></script>-->
 
-	<script src='Scripts/All.js'></script>
+	<!--<script src='Scripts/All.js'></script>
 	<script src='Scripts/MainPage/MainPage.js'></script>
 	<script src='Scripts/CartPage/CartPage.js'></script>
 	<script src='Scripts/ProductDetailPage/ProductDetailPage.js'></script>
 	<script src='Scripts/UserInfoPage/UserInfoPage.js'></script>
 	<script src='Scripts/AddressPage/AddressPage.js'></script>
-	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+	
 	<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 	<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 	<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
-	<script src="Scripts/MainPage/MainPage.js"></script>
+
 	<script src="Scripts/MainPage/RefreshProjuct.js"></script>
 
 	<script>
