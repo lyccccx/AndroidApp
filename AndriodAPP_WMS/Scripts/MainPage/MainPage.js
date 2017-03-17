@@ -145,6 +145,8 @@ function AddProducts() {
     if (UserOpenID == '') {
         UserOpenID = $("#OpenID").val();
     }
+    
+    return;
     $.ajax({
         url: WebSiteName + "/Home/GetProducts",
         type: "POST",
